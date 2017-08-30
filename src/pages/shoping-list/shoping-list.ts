@@ -10,6 +10,7 @@ import { NgForm } from "@angular/forms";
   templateUrl: 'shoping-list.html',
 })
 export class ShopingListPage {
+  listItems : Ingredient[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private slService : ShoppingListService) {
   }
@@ -18,9 +19,23 @@ export class ShopingListPage {
     console.log('ionViewDidLoad ShopingListPage');
   }
 
+  ionViewWillEnter(){
+   this.loadItems();
+   console.log('ionViewWillEnter ShopingListPage');
+  }
   onAddItem(form : NgForm){
     console.log(form);
     this.slService.addItem(form.value.ingredientName, form.value.amount);
     form.reset();
+    this.loadItems();
+  }
+
+  private loadItems(){
+    this.listItems = this.slService.getItems();
+  }
+
+  onCheckItem(index : number){
+    this.slService.removeItem(index);
+    this.loadItems();
   }
 }
