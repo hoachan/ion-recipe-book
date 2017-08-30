@@ -1,4 +1,4 @@
-import { Ingredient } from './../../models/Ingredient';
+import { Ingredient } from './../../models/ingredient';
 import { ShoppingListService } from './../../services/shoping-list';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
