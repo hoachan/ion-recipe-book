@@ -4,5 +4,5 @@ export class Recipe {
         public title : string, 
         public description : string,
         public difficulty : string,
-        public ingredient : Ingredient[]){}
+        public ingredients : Ingredient[]){}
 }
