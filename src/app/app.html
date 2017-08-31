@@ -9,7 +9,8 @@
             <button
                 ion-item
                 icon-left
-                (click)="onLoad(tabsPage)"
+                (click)="onLoad(rootPage)"
+                *ngIf="isAuthenticated"
             >
             <ion-icon name="book"></ion-icon>
             Recipe Book</button>
@@ -17,6 +18,7 @@
                 ion-item
                 icon-left
                 (click)="onLoad(signinPage)"
+                *ngIf="!isAuthenticated"
             >
             <ion-icon name="log-in"></ion-icon>
             Sign In</button>
@@ -24,6 +26,7 @@
                 ion-item
                 icon-left
                 (click)="onLoad(signupPage)"
+                *ngIf="!isAuthenticated"
             >
             <ion-icon name="person"></ion-icon>
             Sign Up</button>
@@ -31,6 +34,7 @@
                 ion-item
                 icon-left
                 (click)="onLogout()"
+                *ngIf="isAuthenticated"
             >
             <ion-icon name="person"></ion-icon>
             Logout</button>
@@ -38,4 +42,4 @@
     </ion-content>
 </ion-menu>
 
-<ion-nav [root]="tabsPage" #nav></ion-nav>
+<ion-nav [root]="rootPage" #nav></ion-nav>
