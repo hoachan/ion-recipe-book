@@ -1,3 +1,6 @@
+import { AuthService } from './../services/auth';
+import { SignupPage } from './../pages/signup/signup';
+import { SigninPage } from './../pages/signin/signin';
 import { RecipesService } from './../services/recipes';
 import { ShoppingListService } from './../services/shoping-list';
 import { NgForm } from '@angular/forms';
@@ -21,7 +24,9 @@ import { MyApp } from './app.component';
     RecipePage,
     RecipesPage,
     ShopingListPage,
-    TabsPage
+    TabsPage,
+    SigninPage,
+    SignupPage
   ],
   imports: [
     BrowserModule,
@@ -34,14 +39,16 @@ import { MyApp } from './app.component';
     RecipePage,
     RecipesPage,
     ShopingListPage,
-    TabsPage
+    TabsPage,
+    SigninPage,
+    SignupPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ShoppingListService,
-    RecipesService
+    AuthService,
   ]
 })
 export class AppModule {}
