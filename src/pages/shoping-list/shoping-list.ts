@@ -42,8 +42,8 @@ export class ShopingListPage {
     this.loadItems();
   }
 
-  onShowOptions(){
+  onShowOptions(event : MouseEvent){
     const popover = this.popoverCtrl.create(SlOptionsPage);
-    popover.present();
+    popover.present({ev :event});
   }
 }
