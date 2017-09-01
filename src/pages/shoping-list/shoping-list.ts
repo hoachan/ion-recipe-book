@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth';
 import { SlOptionsPage } from './sl-options/sl-options';
 import { Ingredient } from './../../models/ingredient';
 import { ShoppingListService } from './../../services/shoping-list';
@@ -15,7 +16,9 @@ export class ShopingListPage {
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams, 
-    private slService : ShoppingListService, private popoverCtrl : PopoverController) {
+    private slService : ShoppingListService, private popoverCtrl : PopoverController,
+    private authService : AuthService
+    ) {
   }
 
   ionViewDidLoad() {
@@ -45,5 +48,25 @@ export class ShopingListPage {
   onShowOptions(event : MouseEvent){
     const popover = this.popoverCtrl.create(SlOptionsPage);
     popover.present({ev :event});
+    popover.onDidDismiss(
+      data => {
+        if (data.action == 'load') {
+
+        } else {
+          this.authService.getActiveUser().getToken()
+            .then(
+              (token : string) => {
+                this.slService.storeList(token).subscribe(
+                  () => console.log('Success'),
+                  error => {
+                    console.log('there is error has content : ' + error);
+                  }
+                )
+              }
+            )
+            .catch();
+        }
+      }
+    )
   }
 }

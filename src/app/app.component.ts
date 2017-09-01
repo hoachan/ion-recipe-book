@@ -27,26 +27,26 @@ export class MyApp {
               private alertCtrl : AlertController, private authService : AuthService
             ) {
 
-    firebase.initializeApp({
-      apiKey: "apiKey of firebase",
-      authDomain: "domain auth",  
-    });
+          firebase.initializeApp({
+            apiKey: "apiKey of firebase",
+            authDomain: "domain auth",    
+          });
 
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.isAuthenticated = true;
-        this.rootPage = TabsPage;
-      } else {
-        this.isAuthenticated = false;
-        this.rootPage = SigninPage;
-      }
-    });
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
+          firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+              this.isAuthenticated = true;
+              this.rootPage = TabsPage;
+            } else {
+              this.isAuthenticated = false;
+              this.rootPage = SigninPage;
+            }
+          });
+          platform.ready().then(() => {
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            statusBar.styleDefault();
+            splashScreen.hide();
+          });
   }
 
   onLoad(page : any){
