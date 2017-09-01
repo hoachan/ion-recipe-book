@@ -38,7 +38,13 @@ export class ShoppingListService {
         });
     }
 
-    fetchList(){
-
+    fetchList(token : string){
+        const userId = this.authService.getActiveUser().uid;
+        return this.http.get('https://ionic-d22eb.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token)
+            .map((response : Response) => {
+                return response.json();
+            }).do((data) => {
+                this.ingredients = data
+            });
     }
 }

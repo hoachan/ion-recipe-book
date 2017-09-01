@@ -51,7 +51,20 @@ export class ShopingListPage {
     popover.onDidDismiss(
       data => {
         if (data.action == 'load') {
-
+          this.authService.getActiveUser().getToken()
+          .then(
+            (token : string) => {
+              this.slService.fetchList(token).subscribe(
+                (list : Ingredient[]) => {
+                  this.listItems = (list) ? list : [];
+                  console.log(this.listItems);
+                },
+                error => {
+                  console.log('there is error has content : ' + error);
+                }
+              )
+            }
+          );
         } else {
           this.authService.getActiveUser().getToken()
             .then(
@@ -63,8 +76,7 @@ export class ShopingListPage {
                   }
                 )
               }
-            )
-            .catch();
+            );
         }
       }
     )
