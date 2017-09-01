@@ -1,3 +1,4 @@
+import { SlOptionsPage } from './../pages/shoping-list/sl-options/sl-options';
 import { AuthService } from './../services/auth';
 import { SignupPage } from './../pages/signup/signup';
 import { SigninPage } from './../pages/signin/signin';
@@ -26,7 +27,8 @@ import { MyApp } from './app.component';
     ShopingListPage,
     TabsPage,
     SigninPage,
-    SignupPage
+    SignupPage,
+    SlOptionsPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { MyApp } from './app.component';
     ShopingListPage,
     TabsPage,
     SigninPage,
-    SignupPage
+    SignupPage,
+    SlOptionsPage
   ],
   providers: [
     StatusBar,

@@ -29,7 +29,7 @@ export class MyApp {
 
     firebase.initializeApp({
       apiKey: "apiKey of firebase",
-      authDomain: "domain auth",
+      authDomain: "domain auth",  
     });
 
     firebase.auth().onAuthStateChanged(user => {
@@ -57,6 +57,7 @@ export class MyApp {
   onLogout() {
     this.authService.logout();
     this.menuCtrl.close();
+    this.nav.setRoot(SigninPage);
   }
 }
 
