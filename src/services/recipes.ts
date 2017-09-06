@@ -1,9 +1,19 @@
 import { Ingredient } from './../models/ingredient';
 import { Recipe } from './../models/recipe';
+import { observable, action, computed } from 'mobx-angular';
 
 export class RecipesService {
     private recipes : Recipe[] = [];
 
+    @observable mobxRecipe : string = "initialize";
+
+    @action setMobxRecipe (mobxRecipe : string){
+        this.mobxRecipe = mobxRecipe;
+    }
+
+    @computed get getMobxRecipeName(){
+        return this.mobxRecipe;
+    }
     addRecipe(  title : string, 
                 description : string, 
                 difficulty : string, 

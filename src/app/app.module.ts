@@ -19,6 +19,8 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 
+import { MobxAngularModule } from 'mobx-angular';  
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +36,8 @@ import { MyApp } from './app.component';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    MobxAngularModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -28,8 +28,8 @@ export class MyApp {
             ) {
 
           firebase.initializeApp({
-            apiKey: "apiKey of firebase",
-            authDomain: "domain auth",    
+            apiKey: "AIzaSyCDbcDg1kgYt4MZBzfGD_YZHjGgaXGmL00",
+            authDomain: "ionic-d22eb.firebaseapp.com",      
           });
 
           firebase.auth().onAuthStateChanged(user => {
