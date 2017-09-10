@@ -19,6 +19,17 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 
+/**
+ * import store for redux system
+ */
+import { StoreModule } from '@ngrx/store';
+import {metaReducer} from "../common/index";
+import {EffectsModule} from "@ngrx/effects";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+/**
+ * finish setting for redux system
+ */
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +45,11 @@ import { MyApp } from './app.component';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    StoreModule.forRoot({metaReducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25 //  Retains last 25 states
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
