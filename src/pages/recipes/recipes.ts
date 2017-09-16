@@ -1,3 +1,4 @@
+import { AddBookAction } from './../../actions/book';
 import { RecipePage } from './../recipe/recipe';
 import { RecipesService } from './../../services/recipes';
 import { Recipe } from './../../models/recipe';
@@ -11,12 +12,17 @@ import {Observable} from "rxjs";
 /**
  * Import the root state in order to select parts of it.
  */
-import * as fromRoot from '../../common/index';
+// import * as fromRoot from '../../common/index';
 /*
  * Import the layout actions to make dispatching from the component possible.
  */
-import * as layout from '../../common/layout/layout.actions';
+// import * as layout from '../../common/layout/layout.actions';
 
+import { Book } from './../../models/book';
+
+import * as fromRoot from '../../reducers';
+
+import * as bookAction from '../../actions/book';
 
 @IonicPage()
 @Component({
@@ -26,6 +32,8 @@ import * as layout from '../../common/layout/layout.actions';
 export class RecipesPage implements OnInit{
 
   recipes : Recipe[];
+  books  ?: Book[] | any;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -35,8 +43,11 @@ export class RecipesPage implements OnInit{
   }
 
   ngOnInit() {
-    console.log(this.store);
-    this.store.dispatch(new layout.OpenModalAction('modalName'));
+    // console.log(this.store);
+    // this.store.dispatch(new layout.OpenModalAction('modalName'));
+    this.books = this.store.select(fromRoot.getBookState);
+    console.log(this.books);
+
   }
 
   ionViewDidLoad() {
@@ -52,5 +63,21 @@ export class RecipesPage implements OnInit{
 
   onLoadRecipe(recipe : Recipe, index : number){
     this.navCtrl.push(RecipePage, {recipe : recipe, index : index});
+  }
+
+  addBook(){
+    let id = '1';
+    let newBook : Book = {
+      id : '1',
+      volumeInfo : {
+          title : 'the secret of success',
+          author : ['andy chan', 'lady gaga'],
+          description : 'string type',
+          publishDate : '2017/09/15',
+          ratingCount : 2
+      }
+    }
+
+    this.store.dispatch(new bookAction.AddBookAction(newBook));
   }
 }

@@ -9,6 +9,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import firebase from 'firebase';
 
+import {Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+/**
+ * Import the root state in order to select parts of it.
+ */
+import * as fromRoot from '../common/index';
+/*
+ * Import the layout actions to make dispatching from the component possible.
+ */
+import * as layout from '../common/layout/layout.actions';
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -24,12 +36,13 @@ export class MyApp {
   constructor(
               platform: Platform, statusBar: StatusBar, 
               splashScreen: SplashScreen, private menuCtrl : MenuController,
-              private alertCtrl : AlertController, private authService : AuthService
+              private alertCtrl : AlertController, private authService : AuthService,
+              private store: Store<fromRoot.AppState>
             ) {
 
           firebase.initializeApp({
-            apiKey: "apiKey of firebase",
-            authDomain: "domain auth",    
+            apiKey: "AIzaSyCDbcDg1kgYt4MZBzfGD_YZHjGgaXGmL00",
+            authDomain: "ionic-d22eb.firebaseapp.com",             
           });
 
           firebase.auth().onAuthStateChanged(user => {
