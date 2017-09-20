@@ -12,7 +12,7 @@ export interface State  {
     selectedBookId : string | null;
 }
 
-export const initialState : State = {
+const initialState : State = {
     ids : [],
     entities : {},
     selectedBookId : null
@@ -39,12 +39,12 @@ export function addBook(
     state : State,
     book : Book
 ){
-    const newBookId = ++state.ids.length;
     return Object.assign({}, state, {
-        ids : [...state.ids, newBookId],
-        entities : {
-            newBookId : book
-        }
+        ids : [...state.ids, book.id],
+        entities : Object.assign({}, state.entities, {
+            [book.id] : book
+        }),
+        selectedBookId : book.id
     });
 }
 
@@ -75,5 +75,5 @@ export const getSelected = createSelector(getEntites, getSelectedId,
      (entites, selectedId) => entites[selectedId]);
 
 
-export const getAll = createSelector(getEntites, getIds, 
+export const getBooks = createSelector(getEntites, getIds, 
         (entites, ids) => ids.map(id => entites[id]));

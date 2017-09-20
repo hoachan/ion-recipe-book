@@ -1,0 +1,70 @@
+<ion-header>
+  
+    <ion-navbar>
+      <ion-buttons start>
+        <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>Book Store</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+
+  <ion-content padding>
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <ion-list>
+        <ion-item>
+          <ion-label>Book Id</ion-label>
+          <ion-input 
+            type="text"
+            formControlName="bookId"
+            ></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label>Title Book</ion-label>
+          <ion-input
+            type="text"
+            formControlName="titleBook"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+          <ion-item>
+            <ion-label>Description</ion-label>
+            <ion-input
+              type="text"
+              formControlName="description"
+            ></ion-input>
+          </ion-item>
+      </ion-list>
+      <button ion-button>ボークスを登録</button>
+    </form>
+    <ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-list>
+            <ion-item>{{bookForm.value.bookId}}</ion-item>
+          </ion-list>
+        </ion-row>
+        <ion-row>
+            <ion-list>
+                <ion-item>{{bookForm.value.titleBook}}</ion-item>
+              </ion-list>
+          </ion-row>
+        <ion-row>
+            <ion-list>
+                <ion-item>{{bookForm.value.description}}</ion-item>
+            </ion-list>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+    <ion-list>
+      <ion-item *ngFor="let bookId of bookIds$ | async">
+        {{ bookId }}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  

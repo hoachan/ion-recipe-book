@@ -1,9 +1,11 @@
+import { BookPage } from './../pages/book/book';
 import { SlOptionsPage } from './../pages/shoping-list/sl-options/sl-options';
 import { AuthService } from './../services/auth';
 import { SignupPage } from './../pages/signup/signup';
 import { SigninPage } from './../pages/signin/signin';
 import { RecipesService } from './../services/recipes';
 import { ShoppingListService } from './../services/shoping-list';
+import { BookService } from './../services/book';
 import { NgForm } from '@angular/forms';
 import { TabsPage } from './../pages/tabs/tabs';
 import { ShopingListPage } from './../pages/shoping-list/shoping-list';
@@ -41,13 +43,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     TabsPage,
     SigninPage,
     SignupPage,
-    SlOptionsPage
+    SlOptionsPage,
+    BookPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    StoreModule.forRoot({reducer}),
+    StoreModule.forRoot({ Store : reducer } ),
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
     })
@@ -62,7 +65,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     TabsPage,
     SigninPage,
     SignupPage,
-    SlOptionsPage
+    SlOptionsPage,
+    BookPage
   ],
   providers: [
     StatusBar,
@@ -71,6 +75,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ShoppingListService,
     RecipesService,
     AuthService,
+    BookService,
   ]
 })
 export class AppModule {}

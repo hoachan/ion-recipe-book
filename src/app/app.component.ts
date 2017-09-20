@@ -1,3 +1,4 @@
+import { BookPage } from './../pages/book/book';
 import { AuthService } from './../services/auth';
 import { SignupPage } from './../pages/signup/signup';
 import { SigninPage } from './../pages/signin/signin';
@@ -11,33 +12,29 @@ import firebase from 'firebase';
 
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
-/**
- * Import the root state in order to select parts of it.
- */
-import * as fromRoot from '../common/index';
-/*
- * Import the layout actions to make dispatching from the component possible.
- */
-import * as layout from '../common/layout/layout.actions';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = TabsPage;
-  signinPage = SigninPage;
-  signupPage = SignupPage;
+  rootPage: any   = TabsPage;
+  signinPage      = SigninPage;
+  signupPage      = SignupPage;
+  bookPage        = BookPage;
+
   isAuthenticated = false;
 
   /**Using ViewChild instead of DI navController */
   @ViewChild('nav') nav: NavController;
 
   constructor(
-              platform: Platform, statusBar: StatusBar, 
-              splashScreen: SplashScreen, private menuCtrl : MenuController,
-              private alertCtrl : AlertController, private authService : AuthService,
-              private store: Store<fromRoot.AppState>
+              platform: Platform, 
+              statusBar: StatusBar, 
+              splashScreen: SplashScreen, 
+              private menuCtrl : MenuController,
+              private alertCtrl : AlertController, 
+              private authService : AuthService,
             ) {
 
           firebase.initializeApp({
@@ -71,6 +68,11 @@ export class MyApp {
     this.authService.logout();
     this.menuCtrl.close();
     this.nav.setRoot(SigninPage);
+  }
+
+  goBookStore(page :any) {
+    this.nav.setRoot(page);
+    this.menuCtrl.close();
   }
 }
 

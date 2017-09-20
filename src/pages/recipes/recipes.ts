@@ -1,4 +1,3 @@
-import { AddBookAction } from './../../actions/book';
 import { RecipePage } from './../recipe/recipe';
 import { RecipesService } from './../../services/recipes';
 import { Recipe } from './../../models/recipe';
@@ -45,8 +44,8 @@ export class RecipesPage implements OnInit{
   ngOnInit() {
     // console.log(this.store);
     // this.store.dispatch(new layout.OpenModalAction('modalName'));
-    this.books = this.store.select(fromRoot.getBookState);
-    console.log(this.books);
+    // this.books = this.store.select(fromRoot.getBookState);
+    // console.log(this.books);
 
   }
 

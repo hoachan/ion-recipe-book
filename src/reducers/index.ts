@@ -19,7 +19,9 @@ import {combineReducers, State} from "@ngrx/store";
 import { ActionReducer } from '@ngrx/store';
 
 export interface AppState {
-    books : fromBook.State
+    Store : {
+      books : fromBook.State
+    }
 }
 
 const reducers = {
@@ -37,6 +39,7 @@ export function reducer(state: any, action: any) {
  * get Data from AppState and Reducer 
  */
 
-export const getBookState = (state : AppState) => state.books;
+export const getBookState = (state : AppState) => state.Store.books;
 
-export const getAllBook = createSelector(getBookState, fromBook.getEntites);
+export const getEntitesBook = createSelector(getBookState, fromBook.getBooks);
+export const getBookIds = createSelector(getBookState, fromBook.getIds);
