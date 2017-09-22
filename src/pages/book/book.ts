@@ -1,3 +1,4 @@
+import { LoadAction } from './../../actions/book';
 import { getBooks } from './../../reducers/book';
 import { getEntitesBook } from './../../reducers/index';
 import { AuthService } from './../../services/auth';
@@ -28,7 +29,6 @@ export class BookPage implements OnInit{
 
   bookIds$    : Observable<string[]>;
   books$      : Observable<Book[]>;
-
 
   bookForm : FormGroup;
 
@@ -63,6 +63,18 @@ export class BookPage implements OnInit{
 
   ngOnInit() {
     this.initializeForm();
+    this.authService.getActiveUser().getToken()
+        .then(
+          (token : string) => {
+            this.store.dispatch(new bookAction.LoadAction(token));
+            // this.bookService.fetchBookList(token)
+            //   .subscribe(
+            //     books => {
+            //       console.log(books);
+            //       this.store.dispatch(new bookAction.LoadAction(books));
+            //     });
+          }
+        );
   }
   onSubmit(){
     // console.log(this.bookForm);

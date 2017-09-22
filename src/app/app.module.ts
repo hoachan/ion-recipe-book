@@ -29,6 +29,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from '../reducers';
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BookEffects } from './../effects/book';
 /**
  * finish setting for redux system
  */
@@ -51,6 +52,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     HttpModule,
     IonicModule.forRoot(MyApp),
     StoreModule.forRoot({ Store : reducer } ),
+
+    EffectsModule.forRoot([BookEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
     })

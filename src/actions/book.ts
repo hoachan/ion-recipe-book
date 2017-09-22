@@ -4,6 +4,7 @@ import { Action } from '@ngrx/store';
 export const SEARCH                 = 'Search the book';
 export const SEARCH_COMPLETE        = 'Search the book completely';
 export const LOAD                   = 'Loading the book';
+export const LOADSUCCESS            = 'Loading success the book';
 export const SELECT                 = 'Select the book';
 export const ADD_BOOK               = 'Add the new book';
 
@@ -14,7 +15,12 @@ export class SearchAction implements Action {
 
 export class LoadAction implements Action {
     readonly type = LOAD;
-    constructor (public payload : Book){}
+    constructor (public payload : string){}
+}
+
+export class LoadSuccessAction implements Action {
+    readonly type = LOADSUCCESS;
+    constructor (public payload : Book[]){}
 }
 
 export class SelectAction implements Action {
@@ -28,4 +34,5 @@ export class AddBookAction implements Action {
 }
 
 export type Actions = SearchAction | LoadAction |
-                    SelectAction | AddBookAction;
+                    SelectAction | AddBookAction |
+                    LoadSuccessAction;

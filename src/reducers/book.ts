@@ -1,5 +1,5 @@
 import { state } from '@angular/core';
-import { SEARCH } from './../actions/book';
+import { SEARCH, LOADSUCCESS } from './../actions/book';
 import { Book } from './../models/book';
 import { createSelector } from 'reselect';
 import * as book from '../actions/book';
@@ -23,9 +23,11 @@ export function reducer(state = initialState, action : book.Actions) : State{
         case book.ADD_BOOK : 
             return addBook(state, action.payload);
         case book.SELECT:
-            return selectBook (state, action.payload);
-        case book.SEARCH : 
-
+            return selectBook (state, action.payload)
+        case book.LOADSUCCESS:
+            return loadSuccess(state, action.payload);
+        case book.SEARCH:
+        case book.LOAD :
         default : {
             return state;
         }
@@ -53,6 +55,23 @@ export function selectBook(
     titleBook : String
 ){
     return Object.assign({}, state);
+}
+
+
+export function loadSuccess(state : State, books : Book[]){
+    const newBooks = books.filter(book => typeof book == "object" && book !== null);
+    const bookIds = newBooks.map((book : Book) => book.id);
+    const newBookEntities = newBooks.reduce(
+                                (entities : { [id : string] : Book}, book: Book) => {
+                                  return Object.assign(entities, {[book.id]: book});  
+                                }, {}                                  
+                            );
+
+    return {
+        ids : [...state.ids, ...bookIds],
+        entities : Object.assign({}, state.entities, newBookEntities),
+        selectedBookId : state.selectedBookId
+    };
 }
 /** ---end setting function for reducer action */
 
